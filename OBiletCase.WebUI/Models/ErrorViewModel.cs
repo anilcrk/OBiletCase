@@ -1,4 +1,4 @@
-namespace OBiletCase.Presentation.Models
+namespace OBiletCase.WebUI.Models
 {
     public class ErrorViewModel
     {

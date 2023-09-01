@@ -20,12 +20,18 @@ namespace OBiletCase.ApiClientAdapter.Services
 
         public async Task<BaseResponse<List<BusLocationResponse>>> GetBusLocations(BaseRequest<string> requestModel)
         {
-            var response = await PostAsJsonAsync(Constants.ApUri.OBilet.GetBusLocations, requestModel);
+            var apiResponse = await PostAsJsonAsync(Constants.ApUri.OBilet.GetBusLocations, requestModel);
 
-            if (response.IsSuccessStatusCode)
+            if (!apiResponse.IsSuccessStatusCode)
             {
-                return await response.Content.ReadAsJsonAsync<BaseResponse<List<BusLocationResponse>>>();
+                var exception = await apiResponse.Content.ReadAsJsonAsync<Exception>();
+
+                throw exception;
             }
+
+            var response = await apiResponse.Content.ReadAsJsonAsync<BaseResponse<List<BusLocationResponse>>>();
+
+            return response;
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OBiletCase.Presentation.Models;
+using OBiletCase.WebUI.Models;
 using System.Diagnostics;
 
-namespace OBiletCase.Presentation.Controllers
+namespace OBiletCase.WebUI.Controllers
 {
     public class HomeController : Controller
     {
