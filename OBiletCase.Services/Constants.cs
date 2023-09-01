@@ -11,6 +11,7 @@ namespace OBiletCase.Services
         public static class Configuration
         {
             public const string HttpClientBaseAddress = "ApiBaseAddress";
+            public const string HttpClientAuthenticationToken = "ApiAuthenticationToken";
         }
     }
 }

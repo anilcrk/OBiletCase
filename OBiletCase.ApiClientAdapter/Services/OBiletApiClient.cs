@@ -15,7 +15,6 @@ namespace OBiletCase.ApiClientAdapter.Services
     {
         public OBiletApiClient(HttpClient client) : base(client)
         {
-            
         }
 
         public async Task<BaseResponse<List<BusLocationResponse>>> GetBusLocations(string searchValue, DateTime date)

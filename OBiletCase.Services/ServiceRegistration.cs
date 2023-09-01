@@ -23,6 +23,7 @@ namespace OBiletCase.Services
 
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", configuration[Constants.Configuration.HttpClientAuthenticationToken]);
                 httpClient.DefaultRequestHeaders.Add("user-agent", "OBiletCase Rest Api Client");
                 httpClient.DefaultRequestHeaders.Add("Connection", "Keep-Alive");
                 httpClient.DefaultRequestHeaders.Add("Keep-Alive", "540");
