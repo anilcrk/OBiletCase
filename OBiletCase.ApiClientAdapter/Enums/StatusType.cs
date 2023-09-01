@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OBiletCase.Domain.Enums
+namespace OBiletCase.ApiClientAdapter.Enums
 {
     public enum StatusType
     {

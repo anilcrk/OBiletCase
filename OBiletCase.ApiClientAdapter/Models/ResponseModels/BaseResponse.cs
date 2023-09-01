@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
-using OBiletCase.Domain.Enums;
+using OBiletCase.ApiClientAdapter.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OBiletCase.Domain.Models.ResponseModels
+namespace OBiletCase.ApiClientAdapter.Models.ResponseModels
 {
     public class BaseResponse<T> where T : class
     {

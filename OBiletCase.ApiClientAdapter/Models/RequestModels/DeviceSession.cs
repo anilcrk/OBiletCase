@@ -1,8 +1,13 @@
 ﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace OBiletCase.Domain.Models.ResponseModels
+namespace OBiletCase.ApiClientAdapter.Models.RequestModels
 {
-    public class SessionResponse
+    public class DeviceSession
     {
         [JsonProperty("session-id")]
         public string SessionId { get; set; }

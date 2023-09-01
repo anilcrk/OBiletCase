@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OBiletCase.Domain.Models.ResponseModels
+namespace OBiletCase.ApiClientAdapter.Models.ResponseModels
 {
     public class Journey
     {

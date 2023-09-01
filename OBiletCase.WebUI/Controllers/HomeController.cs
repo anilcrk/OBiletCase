@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OBiletCase.Services.Interfaces;
 using OBiletCase.WebUI.Models;
 using System.Diagnostics;
 
@@ -7,14 +8,17 @@ namespace OBiletCase.WebUI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IBusLocationService _busLocationService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IBusLocationService busLocationService)
         {
             _logger = logger;
+            _busLocationService = busLocationService;
         }
 
         public IActionResult Index()
         {
+            _busLocationService.GetBusLoacations("hatay", DateTime.Now);
             return View();
         }
 

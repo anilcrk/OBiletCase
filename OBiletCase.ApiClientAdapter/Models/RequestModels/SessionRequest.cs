@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OBiletCase.Domain.Models.RequestModels
+namespace OBiletCase.ApiClientAdapter.Models.RequestModels
 {
     public class SessionRequest
     {

@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 using OBiletCase.ApiClientAdapter.Helpers;
 using OBiletCase.ApiClientAdapter.Interfaces;
-using OBiletCase.Domain.Models.RequestModels;
-using OBiletCase.Domain.Models.ResponseModels;
+using OBiletCase.ApiClientAdapter.Models.RequestModels;
+using OBiletCase.ApiClientAdapter.Models.ResponseModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +18,20 @@ namespace OBiletCase.ApiClientAdapter.Services
             
         }
 
-        public async Task<BaseResponse<List<BusLocationResponse>>> GetBusLocations(BaseRequest<string> requestModel)
+        public async Task<BaseResponse<List<BusLocationResponse>>> GetBusLocations(string searchValue, DateTime date)
         {
+            var requestModel = new BaseRequest<string>
+            {
+                Data = searchValue,
+                Date = date,
+                DeviceSession = new DeviceSession
+                {
+                    SessionId = "PqtdftjloK3Kpka97+ILDzMa6D9740nggLiTzXiLlzA=",
+                    DeviceId = "PqtdftjloK3Kpka97+ILDzMa6D9740nggLiTzXiLlzA="
+                },
+                Language = "tr-TR"
+            };
+
             var apiResponse = await PostAsJsonAsync(Constants.ApUri.OBilet.GetBusLocations, requestModel);
 
             if (!apiResponse.IsSuccessStatusCode)

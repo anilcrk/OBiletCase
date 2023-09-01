@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OBiletCase.WebUI", "OBiletCase.WebUI\OBiletCase.WebUI.csproj", "{109C771A-9B2F-45BB-874E-1D4D9947E75E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{D0B04633-59B7-4735-AE4F-075E0E6F57C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OBiletCase.Services", "OBiletCase.Services\OBiletCase.Services.csproj", "{64782D35-2BBD-4B4F-8DB0-08AAD0AC6160}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,10 @@ Global
 		{109C771A-9B2F-45BB-874E-1D4D9947E75E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{109C771A-9B2F-45BB-874E-1D4D9947E75E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{109C771A-9B2F-45BB-874E-1D4D9947E75E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64782D35-2BBD-4B4F-8DB0-08AAD0AC6160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64782D35-2BBD-4B4F-8DB0-08AAD0AC6160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64782D35-2BBD-4B4F-8DB0-08AAD0AC6160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64782D35-2BBD-4B4F-8DB0-08AAD0AC6160}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +49,7 @@ Global
 		{B582956B-D5A6-4B68-A79A-6F2D0D83CAF3} = {87E249A4-B652-4CE1-9CE7-216056352C74}
 		{3057D60F-E3C3-405E-9CD9-5AAAFD2696CA} = {13A1E946-D3B6-4E27-9B11-636FE3003993}
 		{109C771A-9B2F-45BB-874E-1D4D9947E75E} = {DC262811-0994-4BE5-8F7B-3D8F3D8ECF9E}
+		{64782D35-2BBD-4B4F-8DB0-08AAD0AC6160} = {D0B04633-59B7-4735-AE4F-075E0E6F57C6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A6FEDBAB-C845-44EE-BF51-3BBAE5CA8789}

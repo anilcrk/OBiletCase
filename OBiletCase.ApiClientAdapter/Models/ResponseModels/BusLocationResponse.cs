@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OBiletCase.Domain.Models.ResponseModels
+namespace OBiletCase.ApiClientAdapter.Models.ResponseModels
 {
     public class BusLocationResponse
     {
@@ -35,5 +35,8 @@ namespace OBiletCase.Domain.Models.ResponseModels
 
         [JsonProperty("reference-code")]
         public string ReferenceCode { get; set; }
+
+        [JsonProperty("long-name")]
+        public string LongName { get; set; }
     }
 }

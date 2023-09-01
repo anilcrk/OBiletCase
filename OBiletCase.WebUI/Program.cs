@@ -1,7 +1,11 @@
+using OBiletCase.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddOBiletApiClient(builder.Configuration)
+                .AddServiceBindings();
 
 var app = builder.Build();
 
