@@ -67,7 +67,7 @@ namespace OBiletCase.ApiClientAdapter.Services
                 Type = request.Type,
             };
 
-            var apiResponse = await PostAsJsonAsync(Constants.ApUri.OBilet.GetSession, request);
+            var apiResponse = await PostAsJsonAsync(Constants.ApUri.OBilet.GetSession, requestModel);
 
             if (!apiResponse.IsSuccessStatusCode)
             {
@@ -76,12 +76,13 @@ namespace OBiletCase.ApiClientAdapter.Services
                 throw new Exception(message);
             }
 
-            var response = await apiResponse.Content.ReadAsJsonAsync<DeviceSession>();
+            var response = await apiResponse.Content.ReadAsJsonAsync<BaseResponse<DeviceSession>>();
 
             return new DeviceSessionModel
             {
-                DeviceId = response.DeviceId,
-                SessionId = response.SessionId,
+                Success = response.Status == Enums.StatusType.Success,
+                DeviceId = response.ResponseData.DeviceId,
+                SessionId = response.ResponseData.SessionId
             };
         }
     }

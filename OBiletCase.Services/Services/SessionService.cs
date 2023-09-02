@@ -1,5 +1,6 @@
 ﻿using OBiletCase.ApiClientAdapter.Interfaces;
 using OBiletCase.Domain.Models;
+using OBiletCase.Services.Exceptions;
 using OBiletCase.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,16 @@ namespace OBiletCase.Services.Services
             _apiClient = apiClient;
         }
 
-        public Task<DeviceSessionModel> GetSession(SessionRequestModel request)
+        public async Task<DeviceSessionModel> GetSession(SessionRequestModel request)
         {
-            throw new NotImplementedException();
+            var response = await _apiClient.GetSession(request);
+
+            if (!response.Success)
+            {
+                throw new BusinessRuleException(response.ErrorExplanation);
+            }
+
+            return response;
         }
     }
 }

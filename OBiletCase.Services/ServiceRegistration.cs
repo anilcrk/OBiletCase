@@ -36,6 +36,7 @@ namespace OBiletCase.Services
         public static void AddServiceBindings(this IServiceCollection services)
         {
             services.AddTransient<IBusLocationService, BusLocationService>();
+            services.AddTransient<ISessionService, SessionService>();
         }
     }
 }

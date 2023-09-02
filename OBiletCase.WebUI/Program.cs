@@ -1,4 +1,5 @@
-using OBiletCase.Services;
+﻿using OBiletCase.Services;
+using OBiletCase.WebUI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseMiddleware<DeviceSessionInformationMiddleware>();
 
 app.UseRouting();
 

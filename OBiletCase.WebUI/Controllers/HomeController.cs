@@ -18,17 +18,7 @@ namespace OBiletCase.WebUI.Controllers
 
         public IActionResult Index()
         {
-            //var a = HttpContext.Request.Headers["User-Agent"].ToString();
-            var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
-
-            // Port Bilgisini Al
-            var port = HttpContext.Connection.RemotePort;
             //_busLocationService.GetBusLoacations("hatay", DateTime.Now);
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
             return View();
         }
 
