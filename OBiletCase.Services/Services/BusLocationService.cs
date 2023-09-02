@@ -1,4 +1,5 @@
 ﻿using OBiletCase.ApiClientAdapter.Interfaces;
+using OBiletCase.ApiClientAdapter.Enums;
 using OBiletCase.Domain.DataTransferObjects;
 using OBiletCase.Domain.Models;
 using OBiletCase.Domain.ParameterObjects;
@@ -25,7 +26,7 @@ namespace OBiletCase.Services.Services
         {
             var response = await _apiClient.GetBusLocations(request);
 
-            if(response.Status != ApiClientAdapter.Enums.StatusType.Success)
+            if(response.Status != StatusType.Success)
             {
                 throw new BusinessRuleException(response.UserMessage);
             }

@@ -23,7 +23,7 @@ namespace OBiletCase.WebUI.Controllers
 
             // Port Bilgisini Al
             var port = HttpContext.Connection.RemotePort;
-            _busLocationService.GetBusLoacations("hatay", DateTime.Now);
+            //_busLocationService.GetBusLoacations("hatay", DateTime.Now);
             return View();
         }
 

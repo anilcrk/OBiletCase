@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using OBiletCase.ApiClientAdapter.Helpers;
 using OBiletCase.ApiClientAdapter.Interfaces;
+using OBiletCase.ApiClientAdapter.Models;
 using OBiletCase.ApiClientAdapter.Models.RequestModels;
 using OBiletCase.ApiClientAdapter.Models.ResponseModels;
 using OBiletCase.Domain.Models;
@@ -11,25 +12,27 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Collections.Specialized.BitVector32;
 
 namespace OBiletCase.ApiClientAdapter.Services
 {
     public class OBiletApiClient : ApiClient, IOBiletApiClient
     {
-        private DeviceSession _deviceSession;
         public OBiletApiClient(HttpClient client) : base(client)
         {
         }
 
         public async Task<BaseResponse<List<BusLocationResponse>>> GetBusLocations(BusLocationRequestModel request)
         {
-            await SetDeviceSession(request.Session);
-
             var requestModel = new BaseRequest<string>
             {
                 Data = request.SearchValue,
                 Date = request.Date,
-                DeviceSession = _deviceSession,
+                DeviceSession = new DeviceSession
+                {
+                    DeviceId = request.DeviceSession.DeviceId,
+                    SessionId = request.DeviceSession.SessionId
+                },
                 Language = request.Language
             };
 
@@ -37,9 +40,9 @@ namespace OBiletCase.ApiClientAdapter.Services
 
             if (!apiResponse.IsSuccessStatusCode)
             {
-                var exception = await apiResponse.Content.ReadAsJsonAsync<Exception>();
+                var message = await apiResponse.Content.ReadAsStringAsync();
 
-                throw exception;
+                throw new Exception(message);
             }
 
             var response = await apiResponse.Content.ReadAsJsonAsync<BaseResponse<List<BusLocationResponse>>>();
@@ -47,33 +50,39 @@ namespace OBiletCase.ApiClientAdapter.Services
             return response;
         }
 
-        // TODO : SessionPO yerine request model olmalı
-        // will add cache control
-        private async Task SetDeviceSession(SessionPO session)
+       public async Task<DeviceSessionModel> GetSession(SessionRequestModel request)
         {
             var requestModel = new SessionRequest
             {
                 Browser = new Browser
                 {
-                    Name = session.Browser.Name,
-                    Version = session.Browser.Version,
+                    Name = request.Browser.Name,
+                    Version = request.Browser.Version,
                 },
                 Connection = new Connection
                 {
-                    IpAddress = session.Connection.IpAdress,
-                    Port = session.Connection.Port
+                    IpAddress = request.Connection.IpAdress,
+                    Port = request.Connection.Port
                 },
-                Type = session.Type,
+                Type = request.Type,
             };
 
-            var apiResponse = await PostAsJsonAsync(Constants.ApUri.OBilet.GetSession, requestModel);
+            var apiResponse = await PostAsJsonAsync(Constants.ApUri.OBilet.GetSession, request);
 
-            if (apiResponse.IsSuccessStatusCode)
+            if (!apiResponse.IsSuccessStatusCode)
             {
-                var deviceSession = await apiResponse.Content.ReadAsJsonAsync<DeviceSession>();
+                var message = await apiResponse.Content.ReadAsStringAsync();
 
-                _deviceSession = deviceSession;
+                throw new Exception(message);
             }
+
+            var response = await apiResponse.Content.ReadAsJsonAsync<DeviceSession>();
+
+            return new DeviceSessionModel
+            {
+                DeviceId = response.DeviceId,
+                SessionId = response.SessionId,
+            };
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using OBiletCase.ApiClientAdapter.Models.RequestModels;
+﻿using OBiletCase.ApiClientAdapter.Models;
+using OBiletCase.ApiClientAdapter.Models.RequestModels;
 using OBiletCase.ApiClientAdapter.Models.ResponseModels;
 using OBiletCase.Domain.Models;
 using System;
@@ -12,5 +13,7 @@ namespace OBiletCase.ApiClientAdapter.Interfaces
     public interface IOBiletApiClient
     {
         Task<BaseResponse<List<BusLocationResponse>>> GetBusLocations(BusLocationRequestModel request);
+
+        Task<DeviceSessionModel> GetSession(SessionRequestModel request);
     }
 }

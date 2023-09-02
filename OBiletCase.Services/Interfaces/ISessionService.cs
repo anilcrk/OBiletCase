@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OBiletCase.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace OBiletCase.Services.Interfaces
 {
     public interface ISessionService
     {
+        public Task<DeviceSessionModel> GetSession(SessionRequestModel request);
     }
 }
