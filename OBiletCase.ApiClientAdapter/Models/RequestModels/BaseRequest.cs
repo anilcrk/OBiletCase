@@ -16,7 +16,7 @@ namespace OBiletCase.ApiClientAdapter.Models.RequestModels
         public DateTime Date { get; set; }
 
         [JsonProperty("language")]
-        public string Language { get; set; }
+        public string Language { get; set; } = "tr-TR";
 
         [JsonProperty("device-session")]
         public DeviceSession DeviceSession { get; set; }

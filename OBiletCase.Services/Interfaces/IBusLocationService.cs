@@ -1,4 +1,5 @@
 ﻿using OBiletCase.Domain.DataTransferObjects;
+using OBiletCase.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace OBiletCase.Services.Interfaces
 {
     public interface IBusLocationService
     {
-        public Task<List<SelectListItemDTO>> GetBusLoacations(string searchValue, DateTime date);
+        public Task<List<SelectListItemDTO>> GetBusLoacations(BusLocationRequestModel request);
     }
 }

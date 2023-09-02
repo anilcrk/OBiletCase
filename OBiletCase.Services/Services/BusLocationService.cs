@@ -1,5 +1,7 @@
 ﻿using OBiletCase.ApiClientAdapter.Interfaces;
 using OBiletCase.Domain.DataTransferObjects;
+using OBiletCase.Domain.Models;
+using OBiletCase.Domain.ParameterObjects;
 using OBiletCase.Services.Exceptions;
 using OBiletCase.Services.Interfaces;
 using System;
@@ -19,9 +21,9 @@ namespace OBiletCase.Services.Services
             _apiClient = apiClient;
         }
 
-        public async Task<List<SelectListItemDTO>> GetBusLoacations(string searchValue, DateTime date)
+        public async Task<List<SelectListItemDTO>> GetBusLoacations(BusLocationRequestModel request)
         {
-            var response = await _apiClient.GetBusLocations(searchValue, date);
+            var response = await _apiClient.GetBusLocations(request);
 
             if(response.Status != ApiClientAdapter.Enums.StatusType.Success)
             {

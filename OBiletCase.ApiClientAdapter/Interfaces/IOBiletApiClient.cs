@@ -1,5 +1,6 @@
 ﻿using OBiletCase.ApiClientAdapter.Models.RequestModels;
 using OBiletCase.ApiClientAdapter.Models.ResponseModels;
+using OBiletCase.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace OBiletCase.ApiClientAdapter.Interfaces
 {
     public interface IOBiletApiClient
     {
-        Task<BaseResponse<List<BusLocationResponse>>> GetBusLocations(string searchValue, DateTime date);
+        Task<BaseResponse<List<BusLocationResponse>>> GetBusLocations(BusLocationRequestModel request);
     }
 }

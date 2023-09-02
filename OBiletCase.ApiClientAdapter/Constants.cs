@@ -13,6 +13,7 @@ namespace OBiletCase.ApiClientAdapter
             internal static class OBilet
             {
                 internal const string GetBusLocations = "location/getbuslocations";
+                internal const string GetSession = "client/getsession";
             }
         }
     }
