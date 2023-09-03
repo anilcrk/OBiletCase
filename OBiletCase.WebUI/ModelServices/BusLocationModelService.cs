@@ -23,7 +23,7 @@ namespace OBiletCase.WebUI.ModelServices
             {
                 Query = query,
                 DeviceSession = _contextAccessor.HttpContext.Request.Cookies.GetSessionInfo(),
-                Language = CultureInfo.CurrentUICulture.Name
+                Language = "tr-TR"
             };
 
             return _busLocationService.GetBusLoacations(requestModel);
