@@ -1,10 +1,17 @@
 ﻿using OBiletCase.Domain.Models;
-using System.Runtime.CompilerServices;
 
 namespace OBiletCase.WebUI.Helpers
 {
+    /// <summary>
+    /// Provides helper methods to extract client information from HttpRequest and cookies.
+    /// </summary>
     public static class ClientInfoHelper
     {
+        /// <summary>
+        /// Extracts and returns browser information from the given HttpRequest.
+        /// </summary>
+        /// <param name="request">The HttpRequest containing the User-Agent header.</param>
+        /// <returns>An object containing the browser's name and version.</returns>
         public static Browser GetBrowserInfo(HttpRequest request)
         {
             var browser = new Browser();
@@ -65,6 +72,11 @@ namespace OBiletCase.WebUI.Helpers
             return browser;
         }
 
+        /// <summary>
+        /// Extracts and returns session information from the cookies in the request.
+        /// </summary>
+        /// <param name="cookies">The IRequestCookieCollection containing session cookies.</param>
+        /// <returns>An object containing session and device identifiers.</returns>
         public static DeviceSessionModel GetSessionInfo(this IRequestCookieCollection cookies)
         {
             cookies.TryGetValue(Constants.CookieName.Session, out var sessionId);
