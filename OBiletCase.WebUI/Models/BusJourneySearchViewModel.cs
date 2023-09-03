@@ -20,6 +20,7 @@ namespace OBiletCase.WebUI.Models
 
         [Display(Name = "Tarih")]
         [Required(ErrorMessage = "{0} Gerekli!")]
+        []
         public DateTime DepartureDate { get; set; } = DateTime.Now.AddDays(1).Date;
     }
 }

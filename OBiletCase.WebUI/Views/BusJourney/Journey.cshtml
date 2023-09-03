@@ -5,18 +5,18 @@
 }
 
 <div class="container my-5">
-    <div class="blue-header-journey">
-        <i class="fas fa-arrow-left" style="font-size:24px;"></i>
-        <div class="journey-header">
-            <p>@Model.FormHeaderText</p>
-            <p>@Model.DepartureDateText</p>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary position-relative">
+        <a class="navbar-brand" href="#"><i class="fas fa-arrow-left"></i></a>
+        <div class="journey-header-text">
+            <p class="mb-0" style="font-size: 14pt;">@Model.FormHeaderText</p>
+            <p class="mb-0" style="font-size: 12pt;">@Model.DepartureDateText</p>
         </div>
-    </div>
+    </nav>
     <div class="card">
         <div class="card-body">
-            @foreach(var item in Model.BusJourneys)
+            @foreach (var item in Model.BusJourneys)
             {
-                                   <label>@item.OriginLocation</label>
+                <label>@item.OriginLocation</label>
             }
         </div>
     </div>
