@@ -1,32 +1,37 @@
-﻿@{
+﻿@model BusJourneySearchViewModel
+
+@{
     ViewData["Title"] = "OBilet Case Çalışması";
 }
 
 <div class="container my-5">
     <div class="blue-header"></div>
-        <div class="card">
-            <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <label for="departure">Nereden</label>
-                        <select id="departure" class="form-control select2" name="departure"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="arrival">Nereye</label>
-                        <select id="arrival" class="form-control select2" name="arrival"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Tarih</label>
-                        <input type="date" class="form-control" id="date" name="date">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block btn-find-ticket">Bileti Bul</button>
-                </form>
-            </div>
+    <div class="card">
+        <div class="card-body">
+            <form asp-controller="BusJourney" asp-action="Index">
+                <div class="form-group">
+                    <label asp-for="OriginId"></label>
+                    <select asp-for="OriginId" class="form-control select2"></select>
+                    <span asp-validation-for="OriginId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DestinationId"></label>
+                    <select asp-for="DestinationId" class="form-control select2"></select>
+                    <span asp-validation-for="DestinationId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DepartureDate"></label>
+                    <input asp-for="DepartureDate" type="text" class="form-control">
+                    <span asp-validation-for="DepartureDate" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block btn-find-ticket save">Bileti Bul</button>
+            </form>
         </div>
     </div>
+</div>
 
-    @section scripts{
-        <script>
+@section scripts{
+    <script>
             $(document).ready(function () {
 
                 var selectOptions =   {
@@ -44,7 +49,7 @@
                         },
                         delay: 250,
                         processResults: function (data) {
-                            // En fazla 10 sonuç gösterilecek şekilde filtrele
+                            // Filter to show up to 10 results.
                             data = data.slice(0, 10);
 
                             return {
@@ -55,14 +60,20 @@
                     }
                 }
 
-                $('#departure').select2(selectOptions);
-                $('#arrival').select2(selectOptions);
+                $('#OriginId').select2(selectOptions);
+                $('#DestinationId').select2(selectOptions);
 
-                $("#date").datepicker({
-                    dateFormat: "DD, d MM, yy",
-                    showWeek: true
+                $('#DepartureDate').daterangepicker({
+                    format: "DD-MM-YYYY",
+                    singleDatePicker: true,
+                    autoApply: true,
+                    startDate: moment().add(1, 'day'),
+                    minDate: moment().format('DD-MM-YYYY'),
+                    locale: {
+                        format: 'DD-MM-YYYY'
+                    }
                 });
             });
-        </script>
+    </script>
 
-    }
+}
