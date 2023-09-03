@@ -1,8 +1,68 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "OBilet Case Çalışması";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<div class="container my-5">
+    <div class="blue-header"></div>
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="departure">Nereden</label>
+                        <select id="departure" class="form-control select2" name="departure"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="arrival">Nereye</label>
+                        <select id="arrival" class="form-control select2" name="arrival"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Tarih</label>
+                        <input type="date" class="form-control" id="date" name="date">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-find-ticket">Bileti Bul</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @section scripts{
+        <script>
+            $(document).ready(function () {
+
+                var selectOptions =   {
+                    placeholder: 'Seçiniz',
+                    ajax: {
+                        url: '@Url.Action("SearchBusLocation", "Home")',
+                        dataType: 'json',
+                        type : 'POST'           ,
+                        data: function (params) {
+                            var queryParameters = {
+                                query: params.term
+                            }
+
+                            return queryParameters;
+                        },
+                        delay: 250,
+                        processResults: function (data) {
+                            // En fazla 10 sonuç gösterilecek şekilde filtrele
+                            data = data.slice(0, 10);
+
+                            return {
+                                results: data
+                            };
+                        },
+                        cache: true
+                    }
+                }
+
+                $('#departure').select2(selectOptions);
+                $('#arrival').select2(selectOptions);
+
+                $("#date").datepicker({
+                    dateFormat: "DD, d MM, yy",
+                    showWeek: true
+                });
+            });
+        </script>
+
+    }

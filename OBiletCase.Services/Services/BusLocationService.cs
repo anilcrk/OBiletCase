@@ -33,8 +33,9 @@ namespace OBiletCase.Services.Services
 
             return response.ResponseData.Select(x => new SelectListItemDTO
             {
+                Id = x.Id,
                 Text = x.LongName,
-                Value = x.Id.ToString()
+                Title = x.Name
             }).ToList();
         }
     }
