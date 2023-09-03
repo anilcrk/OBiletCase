@@ -4,6 +4,7 @@ using OBiletCase.ApiClientAdapter.Models;
 using OBiletCase.ApiClientAdapter.Models.RequestModels;
 using OBiletCase.ApiClientAdapter.Models.ResponseModels;
 using OBiletCase.Domain.Models;
+using System.Xml;
 
 namespace OBiletCase.ApiClientAdapter.Services
 {
@@ -67,6 +68,38 @@ namespace OBiletCase.ApiClientAdapter.Services
             }
 
             var response = await apiResponse.Content.ReadAsJsonAsync<BaseResponse<DeviceSession>>();
+
+            return response;
+        }
+
+        public async Task<BaseResponse<JourneyResponse>> GetBusJourneys(BusJourneyRequestModel request)
+        {
+            var requestModel = new BaseRequest<BusJourneyRequest>
+            {
+                Data = new BusJourneyRequest
+                {
+                    OriginId = request.OriginId,
+                    DestinationId = request.DestinationId,
+                    DepartureDate = request.DepartureDate
+                },
+                DeviceSession = new DeviceSession
+                {
+                    DeviceId = request.DeviceSession.DeviceId,
+                    SessionId = request.DeviceSession.SessionId
+                },
+                Language = request.Language,
+            };
+
+            var apiResponse = await PostAsJsonAsync(Constants.ApUri.OBilet.GetBusJourneys, requestModel);
+
+            if (!apiResponse.IsSuccessStatusCode)
+            {
+                var message = await apiResponse.Content.ReadAsStringAsync();
+
+                throw new Exception(message);
+            }
+
+            var response = await apiResponse.Content.ReadAsJsonAsync<BaseResponse<JourneyResponse>>();
 
             return response;
         }

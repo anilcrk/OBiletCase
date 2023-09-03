@@ -14,6 +14,7 @@ namespace OBiletCase.ApiClientAdapter
             {
                 internal const string GetBusLocations = "location/getbuslocations";
                 internal const string GetSession = "client/getsession";
+                internal const string GetBusJourneys = "journey/getbusjourneys";
             }
         }
     }
