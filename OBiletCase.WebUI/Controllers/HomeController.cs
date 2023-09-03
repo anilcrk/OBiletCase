@@ -9,9 +9,9 @@ namespace OBiletCase.WebUI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IBusLocationService _busLocationService;
+        private readonly IBusJourneyService _busLocationService;
 
-        public HomeController(ILogger<HomeController> logger, IBusLocationService busLocationService)
+        public HomeController(ILogger<HomeController> logger, IBusJourneyService busLocationService)
         {
             _logger = logger;
             _busLocationService = busLocationService;

@@ -1,0 +1,33 @@
+﻿@model BusJourneyDetailViewModel
+
+@{
+    ViewData["Title"] = "OBilet Case Çalışması";
+}
+
+<div class="container my-5">
+    <div class="blue-header-journey">
+        <i class="fas fa-arrow-left" style="font-size:24px;"></i>
+        <div class="journey-header">
+            <p>@Model.FormHeaderText</p>
+            <p>@Model.DepartureDateText</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            @foreach(var item in Model.BusJourneys)
+            {
+                                   <label>@item.OriginLocation</label>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+            $(document).ready(function () {
+
+              
+            });
+    </script>
+
+}

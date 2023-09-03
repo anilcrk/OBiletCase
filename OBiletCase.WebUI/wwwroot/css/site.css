@@ -69,3 +69,16 @@ body {
     margin: auto;
     background-color: #F8F8F8;
 }
+
+.journey-header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.blue-header-journey {
+    height: 60pt;
+    background-color: #2F4EB4;
+}

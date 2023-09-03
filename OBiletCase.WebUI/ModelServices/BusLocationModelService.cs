@@ -2,7 +2,6 @@
 using OBiletCase.Domain.Models;
 using OBiletCase.Services.Interfaces;
 using OBiletCase.WebUI.Helpers;
-using System.Globalization;
 
 namespace OBiletCase.WebUI.ModelServices
 {
@@ -22,8 +21,7 @@ namespace OBiletCase.WebUI.ModelServices
             var requestModel = new BusLocationRequestModel
             {
                 Query = query,
-                DeviceSession = _contextAccessor.HttpContext.Request.Cookies.GetSessionInfo(),
-                Language = "tr-TR"
+                DeviceSession = _contextAccessor.HttpContext.Request.Cookies.GetSessionInfo()
             };
 
             return _busLocationService.GetBusLoacations(requestModel);

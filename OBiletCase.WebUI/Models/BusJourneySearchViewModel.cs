@@ -14,6 +14,10 @@ namespace OBiletCase.WebUI.Models
         [Required(ErrorMessage = "{0} Gerekli!")]
         public string DestinationId { get; set; }
 
+        public string OriginName { get; set; }
+
+        public string DestionationName { get; set; }
+
         [Display(Name = "Tarih")]
         [Required(ErrorMessage = "{0} Gerekli!")]
         public DateTime DepartureDate { get; set; } = DateTime.Now.AddDays(1).Date;

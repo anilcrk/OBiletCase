@@ -19,10 +19,10 @@ namespace OBiletCase.ApiClientAdapter.Models.ResponseModels
         public string Name { get; set; }
 
         [JsonProperty("station")]
-        public int Station { get; set; }
+        public int? Station { get; set; }
 
         [JsonProperty("time")]
-        public DateTime Time { get; set; }
+        public DateTime? Time { get; set; }
 
         [JsonProperty("is-origin")]
         public bool IsOrigin { get; set; }

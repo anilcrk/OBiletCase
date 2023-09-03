@@ -35,31 +35,38 @@ namespace OBiletCase.WebUI.Middlewares
                 return;
             }
 
-            var deviceSession = await _sessionModelService.GetDeviceSessionAsync();
-
-            if (deviceSession != null)
+            try
             {
-                // device session information is added to cookies after receiving
-                var sessionCookieOption = new CookieOptions
-                {
-                    HttpOnly = true,
-                    Secure = true,
-                    Expires = DateTime.Now.AddHours(1),
-                    SameSite = SameSiteMode.None
-                };
+                var deviceSession = await _sessionModelService.GetDeviceSessionAsync();
 
-                var deviceCookieOption = new CookieOptions
+                if (deviceSession != null)
                 {
-                    HttpOnly = true,
-                    Secure = true,
-                    Expires = DateTime.Now.AddYears(1),
-                    SameSite = SameSiteMode.None
-                };
+                    // device session information is added to cookies after receiving
+                    var sessionCookieOption = new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = true,
+                        Expires = DateTime.Now.AddHours(1),
+                        SameSite = SameSiteMode.None
+                    };
 
-                context.Response.Cookies.Append(Constants.CookieName.Session, deviceSession.SessionId, sessionCookieOption);
-                context.Response.Cookies.Append(Constants.CookieName.Device, deviceSession.DeviceId, deviceCookieOption);
+                    var deviceCookieOption = new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = true,
+                        Expires = DateTime.Now.AddYears(1),
+                        SameSite = SameSiteMode.None
+                    };
+
+                    context.Response.Cookies.Append(Constants.CookieName.Session, deviceSession.SessionId, sessionCookieOption);
+                    context.Response.Cookies.Append(Constants.CookieName.Device, deviceSession.DeviceId, deviceCookieOption);
+                }
             }
-
+            catch
+            {
+                // ignore
+            }
+            
             await _next(context);
         }
     }

@@ -11,6 +11,6 @@ namespace OBiletCase.ApiClientAdapter.Models.RequestModels
         public string DestinationId { get; set; }
 
         [JsonProperty("departure-date")]
-        public DateTime DepartureDate { get; set; }
+        public string DepartureDate { get; set; }
     }
 }

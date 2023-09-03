@@ -8,7 +8,9 @@
     <div class="blue-header"></div>
     <div class="card">
         <div class="card-body">
-            <form asp-controller="BusJourney" asp-action="Index">
+            <form asp-controller="BusJourney" asp-action="Journey">
+                <input type="hidden" asp-for="OriginName" />
+                <input type="hidden" asp-for="DestionationName" />
                 <div class="form-group">
                     <label asp-for="OriginId"></label>
                     <select asp-for="OriginId" class="form-control select2"></select>
@@ -63,15 +65,23 @@
                 $('#OriginId').select2(selectOptions);
                 $('#DestinationId').select2(selectOptions);
 
+                $('#OriginId').on('select2:select', function (e) {
+                    var selectedText = e.params.data.text;
+
+                    $('#OriginName').val(selectedText);
+                });
+
+                $('#DestinationId').on('select2:select', function (e) {
+                    var selectedText = e.params.data.text;
+
+                    $('#DestionationName').val(selectedText);
+                });
+
                 $('#DepartureDate').daterangepicker({
-                    format: "DD-MM-YYYY",
                     singleDatePicker: true,
                     autoApply: true,
                     startDate: moment().add(1, 'day'),
-                    minDate: moment().format('DD-MM-YYYY'),
-                    locale: {
-                        format: 'DD-MM-YYYY'
-                    }
+                    minDate: moment().format('DD-MM-YYYY')
                 });
             });
     </script>

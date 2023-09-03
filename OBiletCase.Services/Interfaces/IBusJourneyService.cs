@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OBiletCase.Domain.DataTransferObjects;
+using OBiletCase.Domain.Models;
 
 namespace OBiletCase.Services.Interfaces
 {
-    internal interface IBusJourneyService
+    public interface IBusJourneyService
     {
+        Task<List<BusJourneyDTO>> GetBusJourneys(BusJourneyRequestModel request);
     }
 }

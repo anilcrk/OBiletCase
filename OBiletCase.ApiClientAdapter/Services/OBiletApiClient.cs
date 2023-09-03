@@ -72,7 +72,7 @@ namespace OBiletCase.ApiClientAdapter.Services
             return response;
         }
 
-        public async Task<BaseResponse<JourneyResponse>> GetBusJourneys(BusJourneyRequestModel request)
+        public async Task<BaseResponse<List<JourneyResponse>>> GetBusJourneys(BusJourneyRequestModel request)
         {
             var requestModel = new BaseRequest<BusJourneyRequest>
             {
@@ -80,7 +80,7 @@ namespace OBiletCase.ApiClientAdapter.Services
                 {
                     OriginId = request.OriginId,
                     DestinationId = request.DestinationId,
-                    DepartureDate = request.DepartureDate
+                    DepartureDate = request.DepartureDate.Date.ToString("yyyy-MM-dd")
                 },
                 DeviceSession = new DeviceSession
                 {
@@ -99,7 +99,7 @@ namespace OBiletCase.ApiClientAdapter.Services
                 throw new Exception(message);
             }
 
-            var response = await apiResponse.Content.ReadAsJsonAsync<BaseResponse<JourneyResponse>>();
+            var response = await apiResponse.Content.ReadAsJsonAsync<BaseResponse<List<JourneyResponse>>>();
 
             return response;
         }

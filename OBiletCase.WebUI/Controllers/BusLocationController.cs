@@ -10,7 +10,7 @@ namespace OBiletCase.WebUI.Controllers
     {
         private readonly BusLocationModelService _modelService;
 
-        public BusLocationController(IBusLocationService busLocationService, BusLocationModelService modelService)
+        public BusLocationController(IBusJourneyService busLocationService, BusLocationModelService modelService)
         {
             _modelService = modelService;
         }

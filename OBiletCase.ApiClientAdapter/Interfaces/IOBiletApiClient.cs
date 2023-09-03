@@ -16,6 +16,6 @@ namespace OBiletCase.ApiClientAdapter.Interfaces
 
         Task<BaseResponse<DeviceSession>> GetSession(SessionRequestModel request);
 
-        Task<BaseResponse<JourneyResponse>> GetBusJourneys(BusJourneyRequestModel request);
+        Task<BaseResponse<List<JourneyResponse>>> GetBusJourneys(BusJourneyRequestModel request);
     }
 }

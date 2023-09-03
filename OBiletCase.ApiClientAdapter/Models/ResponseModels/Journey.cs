@@ -17,5 +17,29 @@ namespace OBiletCase.ApiClientAdapter.Models.ResponseModels
 
         [JsonProperty("stops")]
         public List<Stop> Stops { get; set; }
+
+        [JsonProperty("origin")]
+        public string Origin { get; set; }
+
+        [JsonProperty("destination")]
+        public string Destination { get; set; }
+
+        [JsonProperty("departure")]
+        public DateTime Departure { get; set; }
+
+        [JsonProperty("arrival")]
+        public DateTime Arrival { get; set; }
+
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
+
+        [JsonProperty("duration")]
+        public TimeSpan Duration { get; set; }
+
+        [JsonProperty("original-price")]
+        public decimal OriginalPrice { get; set; }
+
+        [JsonProperty("internet-price")]
+        public decimal InternetPrice { get; set; }
     }
 }
