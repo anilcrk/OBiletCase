@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OBiletCase.Domain.Models;
 using OBiletCase.Services.Interfaces;
+using OBiletCase.WebUI.Filters;
 using OBiletCase.WebUI.ModelServices;
 using System.Globalization;
 
@@ -21,6 +22,7 @@ namespace OBiletCase.WebUI.Controllers
         }
 
         [HttpPost]
+        [HandleException(Arguments = new object[] { nameof(BusLocationController) })]
         public async Task<IActionResult> Search(string query)
         {
             var result = await _modelService.GetBusLocationsAsync(query);

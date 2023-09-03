@@ -1,5 +1,6 @@
 ﻿using OBiletCase.Domain.DataTransferObjects;
 using OBiletCase.Domain.Models;
+using OBiletCase.Services.Exceptions;
 using OBiletCase.Services.Interfaces;
 using OBiletCase.WebUI.Helpers;
 
@@ -18,6 +19,7 @@ namespace OBiletCase.WebUI.ModelServices
 
         public Task<List<SelectListItemDTO>> GetBusLocationsAsync(string query)
         {
+            throw new BusinessRuleException("test");
             var requestModel = new BusLocationRequestModel
             {
                 Query = query,

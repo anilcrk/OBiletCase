@@ -1,6 +1,10 @@
 ﻿using OBiletCase.Services;
 using OBiletCase.WebUI.Middlewares;
 using OBiletCase.WebUI;
+using FluentValidation;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using OBiletCase.WebUI.Models;
+using OBiletCase.WebUI.Models.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +15,8 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddOBiletApiClient(builder.Configuration)
                 .AddServiceBindings();
+
+builder.Services.AddTransient<IValidator<BusJourneySearchViewModel>, BusJourneySearchViewModelValidator>();
 
 // Defined in ServiceRegistration.cs for binding ModelServices
 builder.Services.AddModelServices();

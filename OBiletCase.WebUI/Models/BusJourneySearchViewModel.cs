@@ -7,7 +7,6 @@ namespace OBiletCase.WebUI.Models
     {
         [Display(Name = "Nereden")]
         [Required(ErrorMessage = "{0} Gerekli!")]
-        [DifferentFrom(nameof(DestinationId))]
         public string OriginId { get; set; }
 
         [Display(Name = "Nereye")]
@@ -20,7 +19,6 @@ namespace OBiletCase.WebUI.Models
 
         [Display(Name = "Tarih")]
         [Required(ErrorMessage = "{0} Gerekli!")]
-        []
         public DateTime DepartureDate { get; set; } = DateTime.Now.AddDays(1).Date;
     }
 }
