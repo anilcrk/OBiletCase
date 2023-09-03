@@ -18,7 +18,7 @@ namespace OBiletCase.Services.Services
             _apiClient = apiClient;
         }
 
-        public async Task<DeviceSessionModel> GetSession(SessionRequestModel request)
+        public async Task<DeviceSessionModel> GetDeviceSession(SessionRequestModel request)
         {
             var response = await _apiClient.GetSession(request);
 

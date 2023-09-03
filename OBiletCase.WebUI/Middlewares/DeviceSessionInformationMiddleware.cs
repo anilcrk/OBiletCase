@@ -1,6 +1,7 @@
 ﻿using OBiletCase.Domain.Models;
 using OBiletCase.Services.Interfaces;
 using OBiletCase.WebUI.Helpers;
+using OBiletCase.WebUI.ModelServices;
 
 namespace OBiletCase.WebUI.Middlewares
 {
@@ -13,16 +14,16 @@ namespace OBiletCase.WebUI.Middlewares
     {
         private readonly RequestDelegate _next;
 
-        private ISessionService _sessionService;
+        private SessionModelService _sessionModelService;
 
         public DeviceSessionInformationMiddleware(RequestDelegate next)
         {
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context, ISessionService sessionService)
+        public async Task Invoke(HttpContext context, SessionModelService sessionModelService)
         {
-            _sessionService = sessionService;
+            _sessionModelService = sessionModelService;
 
             var cookies = context.Request.Cookies;
 
@@ -34,22 +35,7 @@ namespace OBiletCase.WebUI.Middlewares
                 return;
             }
 
-            var browserInfo = ClientInfoHelper.GetBrowserInfo(context.Request);
-            var ipAddress = context.Connection.RemoteIpAddress;
-            var port = context.Connection.RemotePort;
-
-            var requestModel = new SessionRequestModel
-            {
-                Browser = browserInfo,
-                Connection = new Connection
-                {
-                    IpAdress = ipAddress?.ToString(),
-                    Port = port.ToString()
-                },
-                Type = 1
-            };
-
-            var deviceSession = await _sessionService.GetSession(requestModel);
+            var deviceSession = await _sessionModelService.GetDeviceSessionAsync();
 
             if (deviceSession != null)
             {

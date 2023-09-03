@@ -9,6 +9,6 @@ namespace OBiletCase.Services.Interfaces
 {
     public interface ISessionService
     {
-        public Task<DeviceSessionModel> GetSession(SessionRequestModel request);
+        public Task<DeviceSessionModel> GetDeviceSession(SessionRequestModel request);
     }
 }
