@@ -13,7 +13,7 @@ namespace OBiletCase.ApiClientAdapter.Models.RequestModels
         public T Data { get; set; }
 
         [JsonProperty("date")]
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
 
         [JsonProperty("language")]
         public string Language { get; set; } = "tr-TR";

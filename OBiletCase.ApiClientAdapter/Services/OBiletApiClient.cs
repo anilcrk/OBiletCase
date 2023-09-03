@@ -27,7 +27,6 @@ namespace OBiletCase.ApiClientAdapter.Services
             var requestModel = new BaseRequest<string>
             {
                 Data = request.SearchValue,
-                Date = request.Date,
                 DeviceSession = new DeviceSession
                 {
                     DeviceId = request.DeviceSession.DeviceId,

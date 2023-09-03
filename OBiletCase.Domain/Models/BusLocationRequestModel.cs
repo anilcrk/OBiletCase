@@ -11,7 +11,6 @@ namespace OBiletCase.Domain.Models
     {
         public string SearchValue { get; set; }
         public DeviceSessionModel DeviceSession { get; set; }
-        public DateTime Date { get; set; }
         public string Language { get; set; }
         public string Type { get; set; }
     }
