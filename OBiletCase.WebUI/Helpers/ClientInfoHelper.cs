@@ -1,12 +1,13 @@
-﻿using OBiletCase.Domain.ParameterObjects;
+﻿using OBiletCase.Domain.Models;
+using System.Runtime.CompilerServices;
 
 namespace OBiletCase.WebUI.Helpers
 {
     public static class ClientInfoHelper
     {
-        public static BrowserPO GetBrowserInfo(HttpRequest request)
+        public static Browser GetBrowserInfo(HttpRequest request)
         {
-            var browser = new BrowserPO();
+            var browser = new Browser();
             string userAgent = request.Headers["User-Agent"].ToString();
 
             if (userAgent.Contains("Chrome"))
@@ -62,6 +63,18 @@ namespace OBiletCase.WebUI.Helpers
             }
 
             return browser;
+        }
+
+        public static DeviceSessionModel GetSessionInfo(this IRequestCookieCollection cookies)
+        {
+            cookies.TryGetValue(Constants.CookieName.Session, out var sessionId);
+            cookies.TryGetValue(Constants.CookieName.Device, out var deviceId);
+
+            return new DeviceSessionModel
+            {
+                SessionId = sessionId,
+                DeviceId = deviceId
+            };
         }
     }
 }

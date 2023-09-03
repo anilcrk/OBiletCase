@@ -2,14 +2,8 @@
 using OBiletCase.ApiClientAdapter.Enums;
 using OBiletCase.Domain.DataTransferObjects;
 using OBiletCase.Domain.Models;
-using OBiletCase.Domain.ParameterObjects;
 using OBiletCase.Services.Exceptions;
 using OBiletCase.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OBiletCase.Services.Services
 {

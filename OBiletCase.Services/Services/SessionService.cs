@@ -22,12 +22,16 @@ namespace OBiletCase.Services.Services
         {
             var response = await _apiClient.GetSession(request);
 
-            if (!response.Success)
+            if(response.Status != ApiClientAdapter.Enums.StatusType.Success)
             {
-                throw new BusinessRuleException(response.ErrorExplanation);
+                throw new BusinessRuleException(response.UserMessage);
             }
 
-            return response;
+            return new DeviceSessionModel
+            {
+                DeviceId = response.ResponseData.DeviceId,
+                SessionId = response.ResponseData.SessionId
+            };
         }
     }
 }

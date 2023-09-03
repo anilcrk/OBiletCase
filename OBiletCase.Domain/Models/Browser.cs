@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OBiletCase.Domain.ParameterObjects
+namespace OBiletCase.Domain.Models
 {
-    public class BrowserPO
+    public class Browser
     {
         public string Name { get; set; }
         public string Version { get; set; }

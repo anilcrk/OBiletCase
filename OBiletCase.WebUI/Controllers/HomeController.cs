@@ -17,34 +17,6 @@ namespace OBiletCase.WebUI.Controllers
             _busLocationService = busLocationService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> SearchBusLocation(string query)
-        {
-            HttpContext.Request.Cookies.TryGetValue(Constants.CookieName.Session, out string sessionId);
-            HttpContext.Request.Cookies.TryGetValue(Constants.CookieName.Device, out string deviceId);
-
-            var requestModel = new BusLocationRequestModel
-            {
-                SearchValue = query,
-                Date = DateTime.Now,
-                DeviceSession = new DeviceSessionModel
-                {
-                    DeviceId = deviceId,
-                    SessionId = sessionId
-                },
-                Language = "tr-TR"
-            };
-
-            var result = await _busLocationService.GetBusLoacations(requestModel);
-
-            return Json(result);
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

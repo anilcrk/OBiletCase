@@ -1,5 +1,4 @@
-﻿using OBiletCase.ApiClientAdapter.Models.RequestModels;
-using OBiletCase.Domain.Models;
+﻿using OBiletCase.Domain.Models;
 using OBiletCase.Services.Interfaces;
 using OBiletCase.WebUI.Helpers;
 
@@ -42,7 +41,7 @@ namespace OBiletCase.WebUI.Middlewares
             var requestModel = new SessionRequestModel
             {
                 Browser = browserInfo,
-                Connection = new Domain.ParameterObjects.ConnectionPO
+                Connection = new Connection
                 {
                     IpAdress = ipAddress?.ToString(),
                     Port = port.ToString()

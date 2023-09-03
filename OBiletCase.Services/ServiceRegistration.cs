@@ -1,10 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OBiletCase.ApiClientAdapter.Interfaces;
 using OBiletCase.ApiClientAdapter.Services;
 using System.Net.Http.Headers;
@@ -13,8 +8,17 @@ using OBiletCase.Services.Services;
 
 namespace OBiletCase.Services
 {
+    /// <summary>
+    /// Provides extension methods for IServiceCollection to register and configure services and API clients.
+    /// </summary>
     public static class ServiceRegistration
     {
+        /// <summary>
+        /// Registers and configures the OBilet API client to the given IServiceCollection.
+        /// </summary>
+        /// <param name="services">The IServiceCollection to which the OBilet API client will be registered.</param>
+        /// <param name="configuration">The application configuration to fetch settings for the API client.</param>
+        /// <returns>The same IServiceCollection to allow for method chaining.</returns>
         public static IServiceCollection AddOBiletApiClient(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHttpClient<IOBiletApiClient, OBiletApiClient>(httpClient =>
@@ -33,6 +37,10 @@ namespace OBiletCase.Services
             return services;
         }
 
+        /// <summary>
+        /// Registers service layer dependencies to the IServiceCollection.
+        /// </summary>
+        /// <param name="services"></param>
         public static void AddServiceBindings(this IServiceCollection services)
         {
             services.AddTransient<IBusLocationService, BusLocationService>();

@@ -1,18 +1,9 @@
-﻿using Newtonsoft.Json;
-using OBiletCase.ApiClientAdapter.Helpers;
+﻿using OBiletCase.ApiClientAdapter.Helpers;
 using OBiletCase.ApiClientAdapter.Interfaces;
 using OBiletCase.ApiClientAdapter.Models;
 using OBiletCase.ApiClientAdapter.Models.RequestModels;
 using OBiletCase.ApiClientAdapter.Models.ResponseModels;
 using OBiletCase.Domain.Models;
-using OBiletCase.Domain.ParameterObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Collections.Specialized.BitVector32;
 
 namespace OBiletCase.ApiClientAdapter.Services
 {
@@ -26,7 +17,7 @@ namespace OBiletCase.ApiClientAdapter.Services
         {
             var requestModel = new BaseRequest<string>
             {
-                Data = request.SearchValue,
+                Data = request.Query,
                 DeviceSession = new DeviceSession
                 {
                     DeviceId = request.DeviceSession.DeviceId,
@@ -49,16 +40,16 @@ namespace OBiletCase.ApiClientAdapter.Services
             return response;
         }
 
-       public async Task<DeviceSessionModel> GetSession(SessionRequestModel request)
+       public async Task<BaseResponse<DeviceSession>> GetSession(SessionRequestModel request)
         {
             var requestModel = new SessionRequest
             {
-                Browser = new Browser
+                Browser = new Models.RequestModels.Browser
                 {
                     Name = request.Browser.Name,
                     Version = request.Browser.Version,
                 },
-                Connection = new Connection
+                Connection = new Models.RequestModels.Connection
                 {
                     IpAddress = request.Connection.IpAdress,
                     Port = request.Connection.Port
@@ -77,12 +68,7 @@ namespace OBiletCase.ApiClientAdapter.Services
 
             var response = await apiResponse.Content.ReadAsJsonAsync<BaseResponse<DeviceSession>>();
 
-            return new DeviceSessionModel
-            {
-                Success = response.Status == Enums.StatusType.Success,
-                DeviceId = response.ResponseData.DeviceId,
-                SessionId = response.ResponseData.SessionId
-            };
+            return response;
         }
     }
 }
