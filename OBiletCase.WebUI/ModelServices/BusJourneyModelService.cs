@@ -24,7 +24,6 @@ namespace OBiletCase.WebUI.ModelServices
 
         public async Task<BusJourneyDetailViewModel> GetBusJourneys(BusJourneySearchViewModel model)
         {
-            throw new BusinessRuleException("test");
             var requestModel = new BusJourneyRequestModel
             {
                 DeviceSession = _contextAccessor.HttpContext.Request.Cookies.GetSessionInfo(),
