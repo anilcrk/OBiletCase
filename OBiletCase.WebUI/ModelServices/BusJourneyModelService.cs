@@ -5,6 +5,9 @@ using OBiletCase.WebUI.Helpers;
 using OBiletCase.WebUI.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Globalization;
+using OBiletCase.Services.Exceptions;
+using Microsoft.AspNetCore.Mvc;
+using OBiletCase.WebUI.Filters;
 
 namespace OBiletCase.WebUI.ModelServices
 {
@@ -21,6 +24,7 @@ namespace OBiletCase.WebUI.ModelServices
 
         public async Task<BusJourneyDetailViewModel> GetBusJourneys(BusJourneySearchViewModel model)
         {
+            throw new BusinessRuleException("test");
             var requestModel = new BusJourneyRequestModel
             {
                 DeviceSession = _contextAccessor.HttpContext.Request.Cookies.GetSessionInfo(),

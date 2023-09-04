@@ -19,7 +19,6 @@ namespace OBiletCase.WebUI.ModelServices
 
         public Task<List<SelectListItemDTO>> GetBusLocationsAsync(string query)
         {
-            throw new BusinessRuleException("test");
             var requestModel = new BusLocationRequestModel
             {
                 Query = query,
