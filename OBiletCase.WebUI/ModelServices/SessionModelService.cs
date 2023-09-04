@@ -18,7 +18,7 @@ namespace OBiletCase.WebUI.ModelServices
         public Task<DeviceSessionModel> GetDeviceSessionAsync()
         {
             var context = _contextAccessor.HttpContext;
-            var browserInfo = ClientInfoHelper.GetBrowserInfo(context.Request);
+            var browserInfo = context.GetBrowserInfo();
             var ipAddress = context.Connection.RemoteIpAddress;
             var port = context.Connection.RemotePort;
 

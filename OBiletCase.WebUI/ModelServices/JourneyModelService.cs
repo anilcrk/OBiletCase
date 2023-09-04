@@ -3,22 +3,26 @@ using OBiletCase.Domain.Models;
 using OBiletCase.Services.Interfaces;
 using OBiletCase.WebUI.Helpers;
 using OBiletCase.WebUI.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Globalization;
 using OBiletCase.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using OBiletCase.WebUI.Filters;
+using OBiletCase.Services.Services;
 
 namespace OBiletCase.WebUI.ModelServices
 {
-    public class BusJourneyModelService
+    public class JourneyModelService
     {
-        private readonly IBusJourneyService _busJourneyService;
+        private readonly IJourneyService _journeyService;
+        private readonly ILocationService _locationService;
         private readonly IHttpContextAccessor _contextAccessor;
 
-        public BusJourneyModelService(IBusJourneyService busJourneyService, IHttpContextAccessor httpContextAccessor)
+        public JourneyModelService(IJourneyService journeyService, 
+                                      ILocationService locationService, 
+                                      IHttpContextAccessor httpContextAccessor)
         {
-            _busJourneyService = busJourneyService;
+            _journeyService = journeyService;
+            _locationService = locationService;
             _contextAccessor = httpContextAccessor;
         }
 
@@ -26,13 +30,13 @@ namespace OBiletCase.WebUI.ModelServices
         {
             var requestModel = new BusJourneyRequestModel
             {
-                DeviceSession = _contextAccessor.HttpContext.Request.Cookies.GetSessionInfo(),
+                DeviceSession = _contextAccessor.HttpContext.GetSessionInfo(),
                 DepartureDate = model.DepartureDate,
                 DestinationId = model.DestinationId,
                 OriginId = model.OriginId
             };
 
-            var result = await _busJourneyService.GetBusJourneys(requestModel);
+            var result = await _journeyService.GetBusJourneys(requestModel);
 
             return new BusJourneyDetailViewModel
             {
@@ -40,6 +44,17 @@ namespace OBiletCase.WebUI.ModelServices
                 DepartureDateText = model.DepartureDate.ToString("dd MMMM dddd", new CultureInfo("tr-TR")),
                 FormHeaderText = $"{model.OriginName} - {model.DestionationName}"
             };
+        }
+
+        public Task<List<SelectListItemDTO>> GetBusLocationsAsync(string query)
+        {
+            var requestModel = new BusLocationRequestModel
+            {
+                Query = query,
+                DeviceSession = _contextAccessor.HttpContext.GetSessionInfo()
+            };
+
+            return _locationService.GetBusLoacations(requestModel);
         }
     }
 }

@@ -5,6 +5,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using OBiletCase.WebUI.Models;
 using OBiletCase.WebUI.Models.Validators;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +15,13 @@ builder.Services.AddHttpContextAccessor();
 
 
 builder.Services.AddOBiletApiClient(builder.Configuration)
+                .AddFluentValidation(f => 
+                {
+                    f.RegisterValidatorsFromAssemblyContaining<BusJourneySearchViewModelValidator>();
+                })
                 .AddServiceBindings();
 
-builder.Services.AddTransient<IValidator<BusJourneySearchViewModel>, BusJourneySearchViewModelValidator>();
+builder.Services.AddScoped<IValidator<BusJourneySearchViewModel>, BusJourneySearchViewModelValidator>();
 
 // Defined in ServiceRegistration.cs for binding ModelServices
 builder.Services.AddModelServices();
@@ -42,6 +47,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=BusLocation}/{action=Index}/{id?}");
+    pattern: "{controller=BusJourney}/{action=Index}/{id?}");
 
 app.Run();

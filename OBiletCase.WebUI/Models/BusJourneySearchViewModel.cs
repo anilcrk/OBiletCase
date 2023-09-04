@@ -5,20 +5,14 @@ namespace OBiletCase.WebUI.Models
 {
     public class BusJourneySearchViewModel
     {
-        [Display(Name = "Nereden")]
-        [Required(ErrorMessage = "{0} Gerekli!")]
         public string OriginId { get; set; }
 
-        [Display(Name = "Nereye")]
-        [Required(ErrorMessage = "{0} Gerekli!")]
         public string DestinationId { get; set; }
 
         public string OriginName { get; set; }
 
         public string DestionationName { get; set; }
 
-        [Display(Name = "Tarih")]
-        [Required(ErrorMessage = "{0} Gerekli!")]
         public DateTime DepartureDate { get; set; } = DateTime.Now.AddDays(1).Date;
     }
 }

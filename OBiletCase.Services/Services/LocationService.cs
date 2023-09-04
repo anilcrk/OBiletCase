@@ -7,11 +7,11 @@ using OBiletCase.Services.Interfaces;
 
 namespace OBiletCase.Services.Services
 {
-    public class BusLocationService : IBusLocationService
+    public class LocationService : ILocationService
     {
         private readonly IOBiletApiClient _apiClient;
 
-        public BusLocationService(IOBiletApiClient apiClient)
+        public LocationService(IOBiletApiClient apiClient)
         {
             _apiClient = apiClient;
         }

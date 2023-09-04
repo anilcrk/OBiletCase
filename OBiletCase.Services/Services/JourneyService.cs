@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace OBiletCase.Services.Services
 {
-    public class BusJourneyService : IBusJourneyService
+    public class JourneyService : IJourneyService
     {
         private readonly IOBiletApiClient _apiClient;
 
-        public BusJourneyService(IOBiletApiClient apiClient)
+        public JourneyService(IOBiletApiClient apiClient)
         {
             _apiClient = apiClient;
         }
@@ -41,11 +41,6 @@ namespace OBiletCase.Services.Services
             }).ToList();
 
             return result;
-        }
-
-        public Task<List<BusJourneyDTO>> GetBusJourneys(BusJourneyRequest request)
-        {
-            throw new NotImplementedException();
         }
     }
 }

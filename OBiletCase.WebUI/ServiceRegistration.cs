@@ -13,9 +13,8 @@ namespace OBiletCase.WebUI
         /// <param name="services"></param>
         public static void AddModelServices(this IServiceCollection services)
         {
-            services.AddTransient<BusLocationModelService>();
             services.AddTransient<SessionModelService>();
-            services.AddTransient<BusJourneyModelService>();
+            services.AddTransient<JourneyModelService>();
         }
     }
 }

@@ -6,7 +6,7 @@
 
 <div class="container my-5">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary position-relative">
-        
+
     </nav>
     <div class="card">
         <div class="card-body">
@@ -41,7 +41,7 @@
                 var selectOptions =   {
                     placeholder: 'Seçiniz',
                     ajax: {
-                        url: '@Url.Action("Search", "BusLocation")',
+                        url: '@Url.Action("SearchBusLocations", "BusJourney")',
                         dataType: 'json',
                         type : 'POST'           ,
                         data: function (params) {

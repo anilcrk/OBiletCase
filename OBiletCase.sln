@@ -9,15 +9,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{87E249A4-B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OBiletCase.Domain", "OBiletCase.Domain\OBiletCase.Domain.csproj", "{B582956B-D5A6-4B68-A79A-6F2D0D83CAF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OBiletCase.ApiClientAdapter", "OBiletCase.ApiClientAdapter\OBiletCase.ApiClientAdapter.csproj", "{3057D60F-E3C3-405E-9CD9-5AAAFD2696CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OBiletCase.ApiClientAdapter", "OBiletCase.ApiClientAdapter\OBiletCase.ApiClientAdapter.csproj", "{3057D60F-E3C3-405E-9CD9-5AAAFD2696CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{DC262811-0994-4BE5-8F7B-3D8F3D8ECF9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OBiletCase.WebUI", "OBiletCase.WebUI\OBiletCase.WebUI.csproj", "{109C771A-9B2F-45BB-874E-1D4D9947E75E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OBiletCase.WebUI", "OBiletCase.WebUI\OBiletCase.WebUI.csproj", "{109C771A-9B2F-45BB-874E-1D4D9947E75E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{D0B04633-59B7-4735-AE4F-075E0E6F57C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OBiletCase.Services", "OBiletCase.Services\OBiletCase.Services.csproj", "{64782D35-2BBD-4B4F-8DB0-08AAD0AC6160}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OBiletCase.Services", "OBiletCase.Services\OBiletCase.Services.csproj", "{64782D35-2BBD-4B4F-8DB0-08AAD0AC6160}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{84D8AF38-9DC2-4769-A131-8FF2AC1FAC17}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

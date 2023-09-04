@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OBiletCase.Services.Interfaces
 {
-    public interface IBusLocationService
+    public interface ILocationService
     {
         public Task<List<SelectListItemDTO>> GetBusLoacations(BusLocationRequestModel request);
     }
