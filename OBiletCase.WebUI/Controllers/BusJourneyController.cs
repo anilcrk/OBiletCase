@@ -25,6 +25,7 @@ namespace OBiletCase.WebUI.Controllers
         }
 
         [HttpPost]
+        [Route("seferler")]
         public async Task<IActionResult> Journey(BusJourneySearchViewModel model)
         {
             var result = await _modelService.GetBusJourneys(model);
