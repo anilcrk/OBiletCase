@@ -3,6 +3,10 @@ using System.Resources;
 
 namespace OBiletCase.WebUI.Models.Validators
 {
+    /// <summary>
+    /// Validator class for BusJourneySearchViewModel.
+    /// This class uses FluentValidation to define rules for validation.
+    /// </summary>
     public class BusJourneySearchViewModelValidator : AbstractValidator<BusJourneySearchViewModel>
     {
         public BusJourneySearchViewModelValidator()

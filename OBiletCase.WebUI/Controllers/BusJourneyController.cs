@@ -7,6 +7,7 @@ using OBiletCase.WebUI.ModelServices;
 
 namespace OBiletCase.WebUI.Controllers
 {
+    [HandleException(Arguments = new object[] { nameof(BusJourneyController) })]
     public class BusJourneyController : Controller
     {
         private readonly JourneyModelService _modelService;
@@ -20,7 +21,9 @@ namespace OBiletCase.WebUI.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = new BusJourneySearchViewModel();
+
+            return View(model);
         }
 
         [HttpPost]
@@ -28,6 +31,7 @@ namespace OBiletCase.WebUI.Controllers
         [Route("seferler")]
         public async Task<IActionResult> Journey(BusJourneySearchViewModel model)
         {
+            // TODO: PRG pattern can be applied.
             if (!ModelState.IsValid)
             {
                 return View(nameof(Index), model);
@@ -38,25 +42,17 @@ namespace OBiletCase.WebUI.Controllers
             return View(result);
         }
 
+        /// <summary>
+        /// Search and return bus locations.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> SearchBusLocations(string query)
         {
-            List<SelectListItemDTO> result;
+            var result = await _modelService.GetBusLocationsAsync(query);
 
-            try
-            {
-                result = await _modelService.GetBusLocationsAsync(query);
-            }
-            catch (BusinessRuleException bex)
-            {
-                return Json(new
-                {
-                    Success = false,
-                    Message = bex.Message
-                });
-            }
-
-            return Json(result);
+            return Ok(result);
         }
     }
 }

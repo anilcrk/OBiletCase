@@ -1,5 +1,4 @@
-﻿using OBiletCase.WebUI.Filters;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OBiletCase.WebUI.Models
 {
