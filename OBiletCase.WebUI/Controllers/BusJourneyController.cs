@@ -18,16 +18,21 @@ namespace OBiletCase.WebUI.Controllers
             _logger = logger;
         }
 
-        
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("seferler")]
         public async Task<IActionResult> Journey(BusJourneySearchViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(nameof(Index), model);
+            }
+
             var result = await _modelService.GetBusJourneys(model);
 
             return View(result);

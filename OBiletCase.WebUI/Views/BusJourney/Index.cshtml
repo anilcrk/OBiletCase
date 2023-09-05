@@ -28,6 +28,7 @@
                     <input asp-for="DepartureDate" type="text" class="form-control">
                     <span asp-validation-for="DepartureDate" class="text-danger"></span>
                 </div>
+                <span class="text-danger">@ViewBag.FormValidationMessage</span>
                 <button type="submit" class="btn btn-primary btn-block btn-find-ticket save">Bileti Bul</button>
             </form>
         </div>
@@ -82,8 +83,12 @@
                 $('#DepartureDate').daterangepicker({
                     singleDatePicker: true,
                     autoApply: true,
-                    startDate: moment().add(1, 'day'),
-                    minDate: moment().format('DD-MM-YYYY')
+                    startDate: moment().add(1, 'day').format("DD.MM.YYYY"),
+                    minDate: moment(Date.now()),
+                    locale:
+                    {
+                        format : "DD.MM.YYYY"
+                    }
                 });
             });
     </script>

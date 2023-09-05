@@ -43,9 +43,9 @@ namespace OBiletCase.Services
         /// <param name="services"></param>
         public static void AddServiceBindings(this IServiceCollection services)
         {
-            services.AddTransient<IJourneyService, JourneyService>();
-            services.AddTransient<ISessionService, SessionService>();
-            services.AddTransient<ILocationService, LocationService>();
+            services.AddScoped<IJourneyService, JourneyService>();
+            services.AddScoped<ISessionService, SessionService>();
+            services.AddScoped<ILocationService, LocationService>();
         }
     }
 }

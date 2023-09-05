@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using System.Resources;
 
 namespace OBiletCase.WebUI.Models.Validators
 {
@@ -7,24 +8,18 @@ namespace OBiletCase.WebUI.Models.Validators
         public BusJourneySearchViewModelValidator()
         {
             RuleFor(x => x.OriginId)
-             .NotEmpty()
-             .WithMessage("{PropertyName} Gerekli!");
+             .NotNull()
+             .NotEmpty();
 
             RuleFor(x => x.DestinationId)
-                .NotEmpty()
-                .WithMessage("{PropertyName} Gerekli!");
+                   .NotNull()
+                   .NotEmpty();
 
-            RuleFor(x => x)
-                .Custom((model, context) =>
-                {
-                    if (model.OriginId == model.DestinationId)
-                    {
-                        context.AddFailure("Nereden ve Nereye değerleri aynı olamaz.");
-                    }
-                });
+            RuleFor(x => x.OriginId).Must((instance, OriginId) => OriginId != instance.DestinationId)
+                                    .WithMessage("Kalkış ve varış noktası aynı olamaz");
 
             RuleFor(x => x.DepartureDate)
-                .Must(date => date.Date <= DateTime.Now.Date)
+                .Must(date => date.Date < DateTime.Now.Date)
                 .WithMessage("Tarih bugünden küçük olamaz.");
         }
     }
