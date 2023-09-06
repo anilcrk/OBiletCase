@@ -17,6 +17,13 @@ namespace OBiletCase.ApiClientAdapter
             _client = client;
         }
 
+        /// <summary>
+        /// Posts a JSON-serialized object to the specified URL.
+        /// </summary>
+        /// <typeparam name="T">The type of the data being serialized.</typeparam>
+        /// <param name="url">The URL to post the data to.</param>
+        /// <param name="data">The object data to post.</param>
+        /// <returns>A task that represents the asynchronous post operation. The task result contains the HTTP response.</returns>
         public Task<HttpResponseMessage> PostAsJsonAsync<T>(string url, T data)
         {
             var dataAsString = JsonConvert.SerializeObject(data);
