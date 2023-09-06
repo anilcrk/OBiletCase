@@ -1,0 +1,79 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+    .form-group select {
+        width: 100%;
+    }
+
+.button-inside-input {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.btn-find-ticket {
+    background-color: #2F4EB4 !important;
+    margin: auto; 
+    width: 50%;
+    display: block;
+}
+
+.form-group label {
+    color: #2F4EB4; 
+    font-size: 14pt;
+}
+
+.card {
+    max-width: 600px;
+    margin: auto;
+    background-color: #F8F8F8;
+    border: 1px solid gray;
+}
+
+.journey-header-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.back-btn{
+    z-index : 9;
+}

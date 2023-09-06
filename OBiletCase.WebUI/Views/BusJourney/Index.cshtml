@@ -1,0 +1,100 @@
+﻿@model BusJourneySearchViewModel
+
+@{
+    ViewData["Title"] = "OBilet Case Çalışması";
+}
+
+<div class="container my-5">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary position-relative">
+
+    </nav>
+    <div class="card">
+        <div class="card-body">
+            <form asp-controller="BusJourney" asp-action="Journey">
+                <input type="hidden" asp-for="OriginName" />
+                <input type="hidden" asp-for="DestionationName" />
+                <div class="form-group">
+                    <label asp-for="OriginId"></label>
+                    <select asp-for="OriginId" class="form-control select2">
+                        <option selected="selected" value="@Model.OriginId">@Model.OriginName</option>
+                    </select>
+                    <span asp-validation-for="OriginId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DestinationId"></label>
+                    <select asp-for="DestinationId" class="form-control select2">
+                        <option selected="selected" value="@Model.DestinationId">@Model.DestionationName</option>
+                    </select>
+                    <span asp-validation-for="DestinationId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DepartureDate"></label>
+                    <input asp-for="DepartureDate" type="text" value="@Model.DepartureDate" class="form-control">
+                    <span asp-validation-for="DepartureDate" class="text-danger"></span>
+                </div>
+                <span class="text-danger">@ViewBag.FormValidationMessage</span>
+                <button type="submit" class="btn btn-primary btn-block btn-find-ticket save">Bileti Bul</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+            $(document).ready(function () {
+
+                var selectOptions =   {
+                    placeholder: 'Seçiniz',
+                    ajax: {
+                        url: '@Url.Action("SearchBusLocations", "BusJourney")',
+                        dataType: 'json',
+                        type : 'POST',
+                        data: function (params) {
+                            var queryParameters = {
+                                query: params.term
+                            }
+
+                            return queryParameters;
+                        },
+                        delay: 250,
+                        processResults: function (data) {
+                            // Filter to show up to 10 results.
+                            data = data.slice(0, 10);
+
+                            return {
+                                results: data
+                            };
+                        },
+                        cache: true,
+                        error: function (jqXHR) {
+                            if (jqXHR.responseJSON && jqXHR.responseJSON.errorMessage) {
+                                alert(jqXHR.responseJSON.errorMessage);
+                            }
+                        }
+                    }
+                }
+
+                $('#OriginId').select2(selectOptions)
+                    .on('select2:select', function (e)
+                    {
+                        var selectedText = e.params.data.text;
+                        $('#OriginName').val(selectedText);
+                    });
+
+                $('#DestinationId').select2(selectOptions)
+                    .on('select2:select', function (e) {
+                        var selectedText = e.params.data.text;
+
+                        $('#DestionationName').val(selectedText);
+                    });
+
+                $('#DepartureDate').daterangepicker({
+                    singleDatePicker: true,
+                    autoApply: true,
+                    startDate: moment().add(1, 'day'),
+                    minDate: moment(Date.now())
+                });
+            });
+    </script>
+
+}
