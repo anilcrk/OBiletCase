@@ -23,7 +23,7 @@ namespace OBiletCase.WebUI.Models.Validators
                                     .WithMessage("Kalkış ve varış noktası aynı olamaz");
 
             RuleFor(x => x.DepartureDate)
-                .Must(date => date.Date < DateTime.Now.Date)
+                .Must(date => date.Date >= DateTime.Now.Date)
                 .WithMessage("Tarih bugünden küçük olamaz.");
         }
     }
