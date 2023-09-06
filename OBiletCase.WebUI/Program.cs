@@ -17,6 +17,7 @@ builder.Services.AddControllersWithViews()
                 });
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession();
 
 
 builder.Services.AddOBiletApiClient(builder.Configuration)
@@ -41,6 +42,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseMiddleware<DeviceSessionInformationMiddleware>();
+
+app.UseSession();
 
 app.UseRouting();
 

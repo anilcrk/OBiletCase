@@ -67,11 +67,8 @@
                         },
                         cache: true,
                         error: function (jqXHR) {
-                            // Hata mesajını alert ile göster
                             if (jqXHR.responseJSON && jqXHR.responseJSON.errorMessage) {
                                 alert(jqXHR.responseJSON.errorMessage);
-                            } else {
-                                alert('Bir hata oluştu');
                             }
                         }
                     }

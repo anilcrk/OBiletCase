@@ -2,6 +2,7 @@
 using OBiletCase.Domain.DataTransferObjects;
 using OBiletCase.Services.Exceptions;
 using OBiletCase.WebUI.Filters;
+using OBiletCase.WebUI.Helpers;
 using OBiletCase.WebUI.Models;
 using OBiletCase.WebUI.ModelServices;
 
@@ -21,9 +22,9 @@ namespace OBiletCase.WebUI.Controllers
 
         public IActionResult Index()
         {
-            var model = new BusJourneySearchViewModel();
+            var model = HttpContext.GetModelFromSession<BusJourneySearchViewModel>(Constants.SessionName.BusState);
 
-            return View(model);
+            return View(model ?? new BusJourneySearchViewModel());
         }
 
         [HttpPost]

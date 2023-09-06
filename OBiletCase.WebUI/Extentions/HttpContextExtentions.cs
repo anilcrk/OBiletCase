@@ -1,4 +1,8 @@
-﻿using OBiletCase.Domain.Models;
+﻿using Newtonsoft.Json;
+using OBiletCase.Domain.Models;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 
 namespace OBiletCase.WebUI.Helpers
 {
@@ -47,6 +51,38 @@ namespace OBiletCase.WebUI.Helpers
                 SessionId = sessionId,
                 DeviceId = deviceId
             };
+        }
+
+        /// <summary>
+        /// Serializes an object and stores it in the session with the specified key.
+        /// </summary>
+        /// <param name="context">The HttpContext in which the session is accessed.</param>
+        /// <param name="key">The key under which the object will be stored in the session.</param>
+        /// <param name="obj">The object to be stored in the session.</param>
+        public static void SetObjectToSession(this HttpContext context, string key, object obj)
+        {
+            var serializedObject = JsonConvert.SerializeObject(obj);
+
+            context.Session.SetString(key, serializedObject);
+        }
+
+        /// <summary>
+        /// Retrieves an object from the session with the specified key and deserializes it to the given type.
+        /// </summary>
+        /// <typeparam name="T">The type to which the object should be deserialized.</typeparam>
+        /// <param name="context">The HttpContext in which the session is accessed.</param>
+        /// <param name="key">The key under which the object is stored in the session.</param>
+        /// <returns>The deserialized object of the given type, or the type's default value if the key does not exist.</returns>
+        public static T GetModelFromSession<T>(this HttpContext context, string key)
+        {
+            
+            var sessionObj = context.Session.GetString(key);
+            if(sessionObj != null)
+            {
+                return JsonConvert.DeserializeObject<T>(sessionObj);
+            }
+
+            return default;
         }
     }
 }

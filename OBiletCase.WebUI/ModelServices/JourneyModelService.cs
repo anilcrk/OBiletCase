@@ -36,6 +36,8 @@ namespace OBiletCase.WebUI.ModelServices
         /// <returns>A detailed view model containing bus journeys.</returns>
         public async Task<BusJourneyDetailViewModel> GetBusJourneys(BusJourneySearchViewModel model)
         {
+            _contextAccessor.HttpContext.SetObjectToSession(Constants.SessionName.BusState, model);
+
             var requestModel = new BusJourneyRequestModel
             {
                 DeviceSession = _contextAccessor.HttpContext.GetSessionInfo(),
