@@ -14,6 +14,11 @@ namespace OBiletCase.ApiClientAdapter.Services
         {
         }
 
+        // <summary>
+        /// Retrieves bus locations based on the query.
+        /// </summary>
+        /// <param name="request">Bus location request model.</param>
+        /// <returns>A task with bus location responses.</returns>
         public async Task<BaseResponse<List<BusLocationResponse>>> GetBusLocations(BusLocationRequestModel request)
         {
             var requestModel = new BaseRequest<string>
@@ -41,7 +46,12 @@ namespace OBiletCase.ApiClientAdapter.Services
             return response;
         }
 
-       public async Task<BaseResponse<DeviceSession>> GetSession(SessionRequestModel request)
+        /// <summary>
+        /// Gets the device session details.
+        /// </summary>
+        /// <param name="request">Session request model.</param>
+        /// <returns>A task with device session details.</returns>
+        public async Task<BaseResponse<DeviceSession>> GetSession(SessionRequestModel request)
         {
             var requestModel = new SessionRequest
             {
@@ -72,6 +82,11 @@ namespace OBiletCase.ApiClientAdapter.Services
             return response;
         }
 
+        /// <summary>
+        /// Retrieves bus journey details.
+        /// </summary>
+        /// <param name="request">Bus journey request model.</param>
+        /// <returns>A task with journey responses.</returns>
         public async Task<BaseResponse<List<JourneyResponse>>> GetBusJourneys(BusJourneyRequestModel request)
         {
             var requestModel = new BaseRequest<BusJourneyRequest>

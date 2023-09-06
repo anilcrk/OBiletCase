@@ -6,7 +6,7 @@ namespace OBiletCase.Services.Interfaces
     public interface IJourneyService
     {
         /// <summary>
-        /// Fetches a list of bus journeys based on the given request model asynchronously.
+        /// Returns the bus timetable as DTO according to the incoming model.
         /// </summary>
         /// <param name="request">The request model containing criteria for bus journey search.</param>
         /// <returns>A task that represents the asynchronous operation, containing a list of bus journeys.</returns>

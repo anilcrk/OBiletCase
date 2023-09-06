@@ -16,6 +16,12 @@ namespace OBiletCase.Services.Services
             _apiClient = apiClient;
         }
 
+        /// <summary>
+        /// Retrieves a list of bus locations based on the provided request model.
+        /// </summary>
+        /// <param name="request">The request model containing the necessary information for retrieving bus locations.</param>
+        /// <returns>A task representing the asynchronous operation, which returns a list of SelectListItemDTO objects.</returns>
+        /// <exception cref="BusinessRuleException">Thrown when the API response status is not successful.</exception>
         public async Task<List<SelectListItemDTO>> GetBusLoacations(BusLocationRequestModel request)
         {
             var response = await _apiClient.GetBusLocations(request);

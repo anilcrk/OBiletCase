@@ -8,6 +8,9 @@ namespace OBiletCase.Services
 {
     public static class Constants
     {
+        /// <summary>
+        /// General configuration constants.
+        /// </summary>
         public static class Configuration
         {
             public const string HttpClientBaseAddress = "ApiBaseAddress";

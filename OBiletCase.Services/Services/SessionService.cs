@@ -18,6 +18,11 @@ namespace OBiletCase.Services.Services
             _apiClient = apiClient;
         }
 
+        /// <summary>
+        /// Retrieves device session information based on the provided request model.
+        /// </summary>
+        /// <param name="request">The request model containing the necessary information for retrieving the device session.</param>
+        /// <returns>A task representing the operation, which returns a DeviceSessionModel object.</returns>
         public async Task<DeviceSessionModel> GetDeviceSession(SessionRequestModel request)
         {
             var response = await _apiClient.GetSession(request);
